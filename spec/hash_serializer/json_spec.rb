@@ -1,8 +1,8 @@
 RSpec.describe 'HashSerializer::JSON' do
   let(:user) { build(:user) }
-  let(:user_json) { UserSerializer.new(user).to_json }
+  let(:user_as_json) { UserSerializer.new(user).as_json }
 
-  subject { JSON.parse(user_json).symbolize_keys }
+  subject { user_as_json }
 
   it do
     expect(subject[:name]).to eq user[:name]
