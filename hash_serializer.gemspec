@@ -9,9 +9,9 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Ivan Bondarenko"]
   spec.email         = ["bondarenko.dev@gmail.com"]
 
-  spec.summary       = %q{Hash to JSON Serializer.}
-  spec.description   = %q{Hash to JSON Serializer.}
-  # spec.homepage      = "Put your gem's website or public repo URL here." # TODO
+  spec.summary       = %q{HashSerializers.}
+  spec.description   = %q{HashSerializers.}
+  spec.homepage      = "https://github.com/shved270189/hash_serializers"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0").reject do |f|

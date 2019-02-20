@@ -1,3 +1,4 @@
 class UserSerializer < HashSerializer::JSON
-  attributes :name, :email, :avatar
+  reveal :name, :email
+  reveal :avatar, as: :avatar_url
 end
