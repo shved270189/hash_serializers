@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'hash_serializer'
 
 Gem::Specification.new do |spec|
-  spec.name          = "hash_serializer"
+  spec.name          = "hash_serializers"
   spec.version       = HashSerializer::VERSION
   spec.authors       = ["Ivan Bondarenko"]
   spec.email         = ["bondarenko.dev@gmail.com"]

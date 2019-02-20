@@ -5,7 +5,7 @@
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'hash_serializer'
+gem 'hash_serializers'
 ```
 
 And then execute:
@@ -14,7 +14,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install hash_serializer
+    $ gem install hash_serializers
 
 ## Usage
 
