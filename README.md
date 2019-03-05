@@ -20,19 +20,34 @@ Or install it yourself as:
 
 ```ruby
 class UserSerializer < HashSerializer::JSON
+  format :boolean do |val|
+    !!val
+  end
+  format :date do |val|
+    val.iso8601
+  end
+  
   reveal :first_name, :email
   reveal :last_name, as: :surname
+  
+  reveal :is_admin, format: :boolean
+  
+  with_format :date do
+    reveal :registered_at
+  end
 end
 
 serializable_user = UserSerializer.new(
   first_name: 'Bob',
   last_name: 'Marley',
-  email: 'email@exmple.com'
+  email: 'email@exmple.com',
+  is_admin: nil,
+  registered_at: Time.now
 )
 
-serializable_user.as_json # {:first_name=>"Bob", :email=>"email@exmple.com", :surname=>"Marley"}
+serializable_user.as_json # {:first_name=>"Bob", :email=>"email@exmple.com", :surname=>"Marley", :is_admin=>false, :registered_at => "2019-03-05T23:18:33+02:00"}
 
-serializable_user.to_json # '{"first_name":"Bob","email":"email@exmple.com","surname":"Marley"}'
+serializable_user.to_json # '{"first_name":"Bob","email":"email@exmple.com","surname":"Marley","is_admin":false,"registered_at":"2019-03-05T23:18:33+02:00"}'
 ```
 
 ## Development

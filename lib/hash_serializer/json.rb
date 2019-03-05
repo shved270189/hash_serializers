@@ -10,26 +10,49 @@ module HashSerializer
     end
 
     class << self
-      def reveal(*attrs, as: nil)
+      def reveal(*attrs, as: nil, format: nil)
         @attributes ||= []
-        @attributes.push(*attrs.map {|name| HashSerializer::Attribute.new(name, as: as)})
+        attribute_options = {as: as, format: format}.merge(default_attribute_options)
+        @attributes.push(*attrs.map {|name| HashSerializer::Attribute.new(name, attribute_options)})
       end
 
       def attributes
         @attributes
+      end
+
+      def default_attribute_options
+        @default_attribute_options || {}
+      end
+
+      def formats
+        @formats
+      end
+
+      def with_format(format_name)
+        @default_attribute_options = { format: format_name }
+        yield
+        @default_attribute_options = nil
+      end
+
+      def format(format_name, &formatter)
+        @formats ||= {}
+        @formats[format_name] = formatter
       end
     end
 
     def as_json
       hash_to_object!
       attributes.inject({}) do |memo, attribute|
-        memo[attribute.key_name] = self.public_send(attribute.name)
-        memo
+        memo.merge(attribute.as_json(self))
       end
     end
 
     def to_json
       ::JSON.generate(as_json)
+    end
+
+    def formats
+      self.class.formats
     end
 
     private

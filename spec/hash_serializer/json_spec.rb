@@ -15,4 +15,14 @@ RSpec.describe 'UserSerializer' do
   it 'contains avatar as avatar_url' do
     expect(subject[:avatar_url]).to eq user[:avatar]
   end
+
+  context 'with format' do
+    it 'convert is_admin to boolean' do
+      expect(subject[:is_admin]).to eq false
+    end
+
+    it 'convert registered_at to iso8601' do
+      expect(subject[:registered_at]).to eq user[:registered_at].iso8601
+    end
+  end
 end

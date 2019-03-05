@@ -6,6 +6,8 @@ FactoryBot.define do
         email: Faker::Internet.email,
         avatar: Faker::Avatar.image,
         beer_style: Faker::Beer.style,
+        is_admin: nil,
+        registered_at: Time.now,
         location: {
           latitude: Faker::Address.latitude,
           longitude: Faker::Address.longitude
